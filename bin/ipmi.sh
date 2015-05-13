@@ -24,6 +24,7 @@ HEAD=head
 # User and password needed to connect with the IPMI interfaces
 USER=root
 PASSWORD=calvin
+. /opt/clues/local_config.sh
 # Arguments needed by the ipmipower command.
 IPMI_ARGS="-u $USER -p $PASSWORD"
 

@@ -19,7 +19,7 @@
 CLUES_VERSION_TAG="0.89"
 
 # This is the directory in which CLUES is installed
-CLUES_PATH = "/usr/local/clues"
+CLUES_PATH = "/opt/clues"
 
 # Directory in which the plugins are installed
 PLUGIN_DIR = CLUES_PATH + "/plugins"
@@ -161,3 +161,9 @@ HOOKS['HOOK_FAIL']=None
 # The time that a job must be queued to be evaluated to swithch on new nodes (in secs)
 # Use 0 or a negative value to disable re-evaluation
 TIME_TO_EVALUATE = 1800
+
+try:
+  from local_config import *
+except ImportError, e:
+  print >>sys.stderr,"WARNING: No local_config.py found."
+  pass

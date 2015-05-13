@@ -1,0 +1,8 @@
+*.pyc
+*~
+*.swp
+plugins/one
+log/
+local_config.*
+clues.db
+bin/power.d/*

@@ -22,6 +22,6 @@ source "${BASE_PATH}/common"
 custom-run-parts "${BASE_PATH}/power.d" prepoweroff $1
 
 # execute real command
-ssh $1 poweroff
+${BASE_PATH}/ipmi.sh -f "${BASE_PATH}/ipmi.txt" -o soft $1
 
 custom-run-parts "${BASE_PATH}/power.d" poweroff $1

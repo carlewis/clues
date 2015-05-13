@@ -23,7 +23,7 @@ custom-run-parts "${BASE_PATH}/power.d" prepoweron $1
 
 # execute real commands
 SUCCESS=0
-${BASE_PATH}/wol.sh -f "${BASE_PATH}/macs.txt" $1
+${BASE_PATH}/ipmi.sh -f "${BASE_PATH}/ipmi.txt" -o on $1
 if [ $? == 0 ]; then
 	SUCCESS=1
 fi

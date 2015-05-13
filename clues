@@ -29,7 +29,7 @@
 # description: CLUES - Cluster Energy Saving System
 
 
-CLUES_PATH=/usr/local/clues
+CLUES_PATH=/opt/clues
 CLUESDAEMON=${CLUES_PATH}/clues_daemon.py
 
 # the server will record its PID in this file
