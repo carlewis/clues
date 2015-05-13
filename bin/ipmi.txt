@@ -1,0 +1,6 @@
+# IPs file for IPMI nodes
+#
+# You should put here one line for each working node using the format
+#
+# host-ip hostname
+#

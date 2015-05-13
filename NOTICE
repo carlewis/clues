@@ -1,0 +1,29 @@
+CLUES - Cluster Energy Saving System
+Copyright 2010-2011, GRyCAP - UPV (www.grycap.upv.es/clues)
+-----------------------------------------
+You can find more information about the product, release notes, documentation
+and plug-ins at www.grycap.upv.es/clues
+
+AUTHORS
+- Carlos de Alfonso Laguna (caralla@upv.es)
+- Fernando Alvarruiz Bermejo (fbermejo@dsic.upv.es)
+- Miguel Caballer Fernandez (micafer1@upv.es)
+- Vicente Hernandez Garcia (vhernand@dsic.upv.es)
+
+LICENSE
+
+CLUES - Cluster Energy Saving System
+Copyright (C) 2011 - GRyCAP - Universitat Politecnica de Valencia
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.

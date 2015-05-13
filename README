@@ -1,0 +1,136 @@
+CLUES - Cluster Energy Saving System
+
+0. DESCRIPTION
+
+CLUES is a energy management system for HPC clusters and Cloud infrastructures
+whose main function is to power off the working nodes of computer clusters while
+they are not being used, and power them on again when they are needed. It is
+integrated with the management middleware of the cluster by using a set of
+different "middleware connectors". Some examples of management middlewares are
+queue batch system or cloud computing infrastructure manager.
+
+Complete documentation can be found at
+
+  http://www.grycap.upv.es/clues
+
+CLUES is distributed under the GPL version 3 license
+
+  CLUES - Cluster Energy Saving System
+  Copyright (C) 2011 - GRyCAP - Universitat Politecnica de Valencia
+ 
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+1. INSTALLATION
+
+If you are following this guide, you are advised to read the whole guide prior to
+start installing CLUES. In fact, this guide is very straightforward. For more
+detailed information read the CLUES Installation Guide.
+
+1.1 REQUISITES
+
+CLUES is based on python, so Python 2.4 or higher runtime and standard library
+must be installed in the system.
+
+If you want to make use of reports tools, you will need to install sqlite support
+for python (either sqlite or sqlite3).
+
+CLUES is written in python, so Python 2.4 or higher runtime and standard library
+must be installed in the system.
+
+Sqlite support for python (either sqlite or sqlite3) is an optional but recommended
+package. Some of the functionalities of CLUES will be disabled if it is not
+present in the system.
+
+It is also required to have a properly configured system to switch on/off the
+nodes of the cluster. It can be Wake-on-Lan, Intelligent Platform Management
+Interface (IPMI) or some particular implementation. 
+
+1.2 OPTIONAL PACKAGES
+
+To enable clues_report command to perform the host_graph operation to generate a
+graph showing the evolution of the node states over the time, it is needed to
+install the rrdtool library.
+
+1.3 INSTALLING
+
+Select a proper path where to install the CLUES system (i.e. /usr/local/clues, 
+/opt/clues or other). This path will be called CLUES_PATH
+
+$ tar xvzf CLUES-X.XX.tar.gz
+$ chown -R root:root CLUES-X.XX
+$ mv CLUES-X.XX /usr/local
+
+In case that you want the CLUES system to be started at boot time, you can execute 
+the next set of commands
+
+On Debian Systems:
+
+$ chkconfig clues on
+
+On RedHat Systems:
+
+$ update-rc.d clues start 99 2 3 4 5 . stop 05 0 1 6 .
+
+Or you can do it manually:
+
+$ ln -s /usr/local/CLUES-X.XX/clues /etc/init.d
+$ ln -s /etc/init.d/clues /etc/rc2.d/S99clues
+$ ln -s /etc/init.d/clues /etc/rc3.d/S99clues
+$ ln -s /etc/init.d/clues /etc/rc5.d/S99clues
+$ ln -s /etc/init.d/clues /etc/rc1.d/K05clues
+$ ln -s /etc/init.d/clues /etc/rc6.d/K05clues
+
+1.4 CONFIGURATION
+
+Adjust the installation path by setting the CLUES_PATH variable at $CLUES_PATH/clues 
+to the path where the CLUES system is installed (e.g. /usr/local/clues).
+
+Adjust the parameters in $CLUES_PATH/config.py. Please pay attention to the next 
+configuration variables, as they are the most important
+
+CLUES_PATH - must be set to the full path where the CLUES system is installed 
+            (e.g. /usr/local/clues)
+SERVER_PORT - must be set to a free TCP/IP port, where the XML-RPC server will be 
+              listening-in
+SERVER_HOST - DNS name or IP of the CLUES host. If it is set to localhost, CLUES
+              daemon cannot be accessed outside the server host. If set to a public
+              DNS or IP, it has security implications (see Security section).
+MANAGERS=['plg_name'] - The plugin to use in the CLUES system. See the plugins
+              installation section to get more information.
+
+The other parameters may be adjusted acording to your specific installation.
+For more information about configuration read the CLUES Installation Guide.
+
+Download the plug-ins into the $CLUES_PATH/plugins directory and configure them to 
+be used at the $CLUES_PATH/config.py file.
+
+1.4.1 SECURITY
+
+Security is disabled by default, but it should be taken into account that it would
+be possible that someone that has network access to the clues server may power off
+some of your nodes by using the XML-RPC remote API.
+
+CLUES provides an authentication framework in order to avoid such situation. In case
+that you want to enable the authentication framework, you must change the value of
+
+  SECURITY_TOKEN_ENABLED
+
+to True in the $CLUES_PATH/config.py file, and create the users by using the 
+$CLUES_PATH/clues_user.py application.
+
+To avoid typing the password, or if the CLUES commands are going to be used by
+some kind of non-interactive service, you can create a file:
+	$HOME/.clues/clues_auth
+With this format:
+	username:sha1(password)

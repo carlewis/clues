@@ -1,0 +1,27 @@
+CLUES 0.89 (released 2013-02-28)
+
+    * Fix a problem when a node is not in any queue.
+
+CLUES 0.88 (released 2012-11-26)
+
+    * Add evaluation of expresion in job requirements
+
+CLUES 0.87 (released 2012-07-06)
+
+    * Improve the processing of queue specs
+    * Minor change in wol.sh script
+
+CLUES 0.86b (released 2012-05-25)
+
+    * Included missing file clues_user.py in the package
+
+CLUES 0.86 (released 2012-05-25)
+
+    * Fix some problems with concurrent access to the CLUES database.
+    * Fix a problem with the submission of a large number of simultaneous jobs.
+    * Improve the status operation of clues_host command.
+    * Improve the host_graph function of clues_report command.
+
+CLUES 0.85
+
+    * Initial version

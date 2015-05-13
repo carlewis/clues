@@ -1,0 +1,6 @@
+# MACs file from IPs file
+#
+# You should put here one line for each working node using the format
+#
+# hostname 00:00:00:00:00:00
+#

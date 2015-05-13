@@ -1,0 +1,37 @@
+#! /bin/bash
+#
+# CLUES - Cluster Energy Saving System
+# Copyright (C) 2011 - GRyCAP - Universitat Politecnica de Valencia
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+BASE_PATH=$(dirname $0)
+source "${BASE_PATH}/common"
+
+custom-run-parts "${BASE_PATH}/power.d" prepoweron $1
+
+# execute real commands
+SUCCESS=0
+${BASE_PATH}/ipmi.sh -f "${BASE_PATH}/ipmi.txt" -o on $1
+if [ $? == 0 ]; then
+	SUCCESS=1
+fi
+
+# fail if the node is not supported
+if [ $SUCCESS != 1 ]; then
+	exit -1
+fi
+
+custom-run-parts "${BASE_PATH}/power.d" poweron $1
+exit 0
