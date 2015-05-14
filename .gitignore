@@ -6,3 +6,5 @@ log/
 local_config.*
 clues.db
 bin/power.d/*
+bin/ipmi.txt
+bin/hooks/*
