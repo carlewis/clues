@@ -82,7 +82,8 @@ function stop() {
 function status() {
 	if ! [ -f ${PIDFILE} ]
 	then
-		echo "CLUES Daemon Stopped"
+		echo "clues is stopped"
+		exit 1
 	else
 		pid=`cat ${PIDFILE}`
 		alive=`ps ${pid} | grep ${pid} | wc -l`
@@ -90,8 +91,9 @@ function status() {
 		then
 			echo "PID file exists but CLUES Daemon Stopped. Removing PID file"
 			rm -f ${PIDFILE}
+			exit 2
 		else
-			echo "CLUES Daemon Running (PID: ${pid})"
+			echo "clues (pid ${pid}) is running..."
 		fi
 	fi
 }
